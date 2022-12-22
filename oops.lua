@@ -412,7 +412,7 @@ function Library:create(options)
 		Name = _G.UiName,
 		Size = UDim2.fromOffset(600, 400),
 		Theme = self.Themes[settings.Theme],
-		Link = "discord.gg/Dfxktn5cMX"
+		Link = "Menu : "
 	}, options)
 
 	if getgenv and getgenv().MercuryUI then
@@ -718,7 +718,7 @@ function Library:create(options)
 			selectedTab = homeButton
 			homePage.Visible = true
 			homeButton.BackgroundTransparency = 0
-			Library.UrlLabel.Text = Library.Url .. "/home"
+			Library.UrlLabel.Text = Library.Url .. ""
 		end)
 	end
 
@@ -790,9 +790,9 @@ function Library:create(options)
 		local desiredInterval = 1
 		local counter = 0
 		RunService.Heartbeat:Connect(function(step)
-			counter += step  
+			counter = counter + step  
 			if counter >= desiredInterval then
-				counter -= desiredInterval
+				counter = counter - desiredInterval
 				local date = tostring(os.date("%X"))
 				timeDisplay.Text = date:sub(1, date:len()-3)
 			end
@@ -862,7 +862,7 @@ function Library:create(options)
 	settingsTab:keybind{
 		Name = "Toggle Key",
 		Description = "Key to show/hide the UI.",
-		Keybind = Enum.KeyCode.Delete,
+		Keybind = Enum.KeyCode.RightControl,
 		Callback = function()
 			self.Toggled = not self.Toggled
 			Library:show(self.Toggled)
@@ -1225,7 +1225,7 @@ function Library:tab(options)
 			self.homePage.Visible = true
 			self.homeButton:tween{BackgroundTransparency = 0.15}
 			selectedTab = self.homeButton
-			Library.UrlLabel.Text = Library.Url .. "/home"	
+			Library.UrlLabel.Text = Library.Url .. ""	
 		elseif tabButton == lastTab[2] then
 			lastTab = visible[#visible-1]
 			tab.Visible = false
@@ -2499,7 +2499,7 @@ function Library:color_picker(options)
 					-- hacky fix for zindex issue
 					for _, v in next, darkener.AbsoluteObject:GetDescendants() do
 						pcall(function()
-							v.ZIndex += 3
+							v.ZIndex = v.ZIndex +    3
 						end)
 					end
 
@@ -2836,7 +2836,7 @@ function Library:_theme_selector()
 	local themesCount = 0
 
 	for _ in next, Library.Themes do
-		themesCount += 1
+		themesCount = themesCount + 1
 	end
 
 	local themeContainer = self.container:object("Frame", {
@@ -2877,7 +2877,7 @@ function Library:_theme_selector()
 
 		for _, color in next, themeColors do
 			if not (type(color) == "boolean") then
-				count += 1
+				count = count + 1
 			end
 		end
 
@@ -3074,7 +3074,7 @@ function Library:prompt(options)
 	Library._promptExists = true
 
 	local count = 0; for a, _ in next, options.Buttons do
-		count += 1
+		count = count + 1
 	end
 
 	local darkener = self.core:object("Frame", {
