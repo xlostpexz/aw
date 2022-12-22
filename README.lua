@@ -412,7 +412,7 @@ function Library:create(options)
 		Name = _G.UiName,
 		Size = UDim2.fromOffset(600, 400),
 		Theme = self.Themes[settings.Theme],
-		Link = "https://github.com/deeeity/mercury-lib"
+		Link = "discord.gg/winnablehub"
 	}, options)
 
 	if getgenv and getgenv().MercuryUI then
